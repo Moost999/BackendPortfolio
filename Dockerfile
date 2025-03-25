@@ -12,7 +12,7 @@ FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
 
-COPY --from=build /target/portfolio-1.0.0.jar app.jar
+COPY --from=build /target/portfolio.jar app.jar
 
 ENV DATABASE_URL=${DATABASE_URL}
 ENV SPRING_DATABASE=${SPRING_DATABASE}
