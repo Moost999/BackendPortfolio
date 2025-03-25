@@ -5,7 +5,7 @@ RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
 RUN apt-get install maven -y
-RUN mvn clean install
+RUN mvn clean install -DskipTests
 
 
 FROM openjdk:17-jdk-slim
@@ -14,6 +14,8 @@ EXPOSE 8080
 
 COPY --from=build /target/portfolio-1.0.0.jar app.jar
 
-ENV SPRING_DATA_MONGODB_URI=${SPRING_DATA_MONGODB_URI}
+ENV DATABASE_URL=${DATABASE_URL}
+ENV SPRING_DATABASE=${SPRING_DATABASE}
+ENV JWT_SECRET=${JWT_SECRET}
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
