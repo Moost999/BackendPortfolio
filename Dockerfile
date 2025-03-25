@@ -14,4 +14,6 @@ EXPOSE 8080
 
 COPY --from=build /target/portfolio-1.0.0.jar app.jar
 
+ENV SPRING_DATA_MONGODB_URI=${SPRING_DATA_MONGODB_URI}
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
